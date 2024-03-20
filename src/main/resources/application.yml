@@ -11,3 +11,6 @@ spring:
     url: jdbc:mysql://localhost:3306/sun?useSSL=false&useUnicode=true&characterEncoding=UTF-8
   application:
     name: user-center #这个名字一般是用来做微服务的服务名，用来标识某个服务的，与项目名保持一致即可
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
