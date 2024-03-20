@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>sun</groupId>
+    <artifactId>user-center</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Archetype - user-center</name>
+    <url>http://maven.apache.org</url>
+
+    <!--指定编译版本为1.8-->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!--引入springboot父工程-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/>
+    </parent>
+
+    <!--引入依赖-->
+    <dependencies>
+        <!--web场景启动器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--mybatis场景启动器（其实在引入了MybatisPlus场景启动器就不需要引入了）-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <!--MybatisPlus场景启动器-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <!--Apache Commons Lang，一个Java库，提供了一些Java基本类的帮助工具，如字符串操作、-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!--Spring Boot的一个开发工具包，主要用于提高开发效率，例如通过提供自动重启来加快开发循环。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <!--MySQL的官方JDBC驱动包，允许Java应用与MySQL数据库进行连接和交互。-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!--用于处理Spring Boot配置属性的注解处理器，通过该依赖，可以生成和提供配置元数据信息，使IDE能够提供自动补全和文档支持。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--一个Java库，用于自动化生成代码（如getters, setters, equals, hashCode等方法）。-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--Spring Boot的测试套件，包含了进行单元测试和集成测试所需的依赖，如JUnit、Spring Test、Mockito等。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--一个Java编程语言的单元测试框架，用于编写和运行可重复的测试，它是Java开发中最广泛使用的测试框架之一。-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--这个配置的目的是在打包应用时，从最终的包中排除lombok。
+    Lombok是一个在编译时提供自动代码生成（如getters, setters, constructors等）的Java库，
+    通常只在开发阶段需要，而不需要被包含在最终的应用包中。-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
