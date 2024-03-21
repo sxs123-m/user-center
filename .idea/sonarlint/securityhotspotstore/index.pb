@@ -53,3 +53,9 @@ w
 G.idea/sonarlint/issuestore/7/d/7da38ab2c8a97b56eb27184f0ff6625b0482f9d8,8\0\80114548e269e05ba801f7928b46c631edb69d15
 w
 G.idea/sonarlint/issuestore/8/2/82f508e4ca85a0e012edd14ca822baaf35b7a99c,e\a\eacfb5e8124a163ed4ed3e5d6ed76c6a9c352a62
+o
+?src/main/java/com/sun/usercenter/controller/UserController.java,7\5\7585c1bf0503404562e85e564afe23ce09289735
+w
+Gsrc/main/java/com/sun/usercenter/model/request/UserRegisterRequest.java,6\e\6e144a2357100a12c2c40f6e8b0260f531ae2916
+t
+Dsrc/main/java/com/sun/usercenter/model/request/UserLoginRequest.java,8\a\8a224acd1ec844b1ffc5a181fd0ce55942a2824f
