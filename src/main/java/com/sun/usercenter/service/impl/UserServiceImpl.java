@@ -1,5 +1,4 @@
 package com.sun.usercenter.service.impl;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +14,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static com.sun.usercenter.contant.UserConstant.USER_LOGIN_SAVE;
+
 /**
  * @author 8615941515990
  * @description 针对表【user】的数据库操作Service实现
@@ -27,17 +28,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /*
     盐值：用于密码混淆
      */
-    private static final  String SALT = "sun";
+    private static final String SALT = "sun";
     /*
     注入针对接口的代理对象，可以直接调用接口的方法
      */
     @Resource
     private UserMapper userMapper;
-    /*
-    用户登录态的key
-     */
-    private static final String USER_LOGIN_SAVE = "userLoginState";
-
 
     @Override
     public Long userRegister(String userAccount, String userPassword, String checkPassword) {
@@ -116,6 +112,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 3 如果登录成功，记录用户的登录态
 
         // 首先进行脱敏
+        User cleanUser = getCleanUser(user);
+
+        HttpSession session = request.getSession();
+        // 然后将脱敏后的用户信息放入session中
+        session.setAttribute(USER_LOGIN_SAVE, cleanUser);
+
+        return cleanUser;
+    }
+
+    /**
+     * 对得到的user对象，进行用户信息脱敏
+     * @param user
+     * @return
+     */
+    @Override
+    public User getCleanUser(User user) {
         User cleanUser = new User();
         cleanUser.setId(user.getId());
         cleanUser.setUsername(user.getUsername());
@@ -126,11 +138,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         cleanUser.setEmail(user.getEmail());
         cleanUser.setUserStatus(user.getUserStatus());
         cleanUser.setCreateTime(user.getCreateTime());
-
-        HttpSession session = request.getSession();
-        // 然后将脱敏后的用户信息放入session中
-        session.setAttribute(USER_LOGIN_SAVE, cleanUser);
-
+        cleanUser.setRole(user.getRole());
         return cleanUser;
     }
 }

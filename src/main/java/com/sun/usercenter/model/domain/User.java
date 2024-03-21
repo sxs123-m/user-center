@@ -29,6 +29,8 @@ public class User implements Serializable {
      */
     private String userAccount;
 
+    private Integer role; // 用户权限 0 普通用户 1 管理员
+
     /**
      * 
      */

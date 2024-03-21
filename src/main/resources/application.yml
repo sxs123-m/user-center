@@ -3,6 +3,8 @@ server:
   port: 8080
 #  配置数据源
 spring:
+  session:
+    timeout: 86400 #失效时间为一天
   datasource:
     driver-class-name: com.mysql.jdbc.Driver #注意这里是mysql5的驱动，如果是mysql8选择另一个
     username: root
